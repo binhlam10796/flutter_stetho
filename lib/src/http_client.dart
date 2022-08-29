@@ -72,6 +72,11 @@ class StethoHttpClient implements HttpClient {
   }
 
   @override
+  void abort([Object exception, StackTrace stackTrace]) {
+    request.addError(exception, stackTrace);
+  }
+
+  @override
   set connectionFactory(Future<ConnectionTask<Socket>> Function(Uri url, String proxyHost, int proxyPort) f) {
     client.connectionFactory = f;
   }
@@ -79,11 +84,6 @@ class StethoHttpClient implements HttpClient {
   @override
   set keyLog(Function(String line) callback) {
     client.keyLog = callback;
-  }
-
-  @override
-  void abort([Object exception, StackTrace stackTrace]) {
-    request.addError(exception, stackTrace);
   }
 
   @override
