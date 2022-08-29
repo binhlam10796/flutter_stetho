@@ -72,6 +72,16 @@ class StethoHttpClient implements HttpClient {
   }
 
   @override
+  set connectionFactory(Future<ConnectionTask<Socket>> Function(Uri url, String? proxyHost, int? proxyPort)? f) {
+    client!.connectionFactory = f;
+  }
+
+  @override
+  set keyLog(Function(String line)? callback) {
+    client!.keyLog = callback;
+  }
+
+  @override
   Future<HttpClientRequest> get(String host, int port, String path) =>
       open("get", host, port, path);
 
