@@ -72,11 +72,6 @@ class StethoHttpClient implements HttpClient {
   }
 
   @override
-  void abort([Object exception, StackTrace stackTrace]) {
-    request.addError(exception, stackTrace);
-  }
-
-  @override
   set connectionFactory(Future<ConnectionTask<Socket>> Function(Uri url, String proxyHost, int proxyPort) f) {
     client.connectionFactory = f;
   }
